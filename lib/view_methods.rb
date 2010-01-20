@@ -1,5 +1,14 @@
 module AdCopy
+  
+  # Methods within this module will be included in ActionView::Base 
   module ViewMethods
+    
+    # Returns the HTML for an AdCopy puzzle
+    #
+    # Options:
+    # <tt>tabindex</tt>::  The tab index of the text field within the puzzle (defaults to <tt>nil</tt>)
+    # <tt>theme</tt>::  The theme applied to the puzzle (defaults to <tt>'purple'</tt>)
+    # <tt>lang</tt>::  The language of the puzzle (defaults to <tt>'en'</tt>)
     def adcopy_puzzle(options = {})
       AdCopy::check_for_keys!
       options = { :tabindex => nil,

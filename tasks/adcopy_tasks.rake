@@ -1,4 +1,4 @@
-namespace :quote do
+namespace :adcopy do
   desc "Creates YAML file for API keys"
   task :setup do
     file_loc = "#{RAILS_ROOT}/config/adcopy_config.yml"

@@ -1,0 +1,42 @@
+= AdCopy
+
+Author::	Eddie Siegel
+Info::		http://www.adcopy.com
+
+== Installation
+
+Currently AdCopy can only be installed as a rails plugin (gem coming soon):
+
+  script/plugin install git://github.com/atomon/adcopy.git
+
+== API Keys
+
+Your AdCopy API keys should be stored as follows in <tt>config/adcopy_config.yml</tt>
+
+  C_KEY: your_c_key_here
+  V_KEY: your_v_key_here
+  H_KEY: your_h_key_here
+
+== Adding An AdCopy Puzzle To A View
+
+Displaying an AdCopy Puzzle is as simple as calling +adcopy_puzzle+ inside a form within your view. For example:
+
+  <% form_for(@user) do |f| %>
+    # ...
+    <p>
+      <%= adcopy_puzzle %>
+    </p>
+    # ...
+  <% end %>
+
+== Verifying The Input To An AdCopy Puzzle In A Controller
+
+The +verify_adcopy_puzzle+ verifies the user's input and returns +true+ if the user provided the correct input. In the simplest case, verification could be performed as follows:
+
+  respond_to do |format|
+    if verify_adcopy_puzzle && @user.save
+      # ...
+    else
+      # ...
+    end
+  end

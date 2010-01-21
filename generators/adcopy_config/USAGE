@@ -1,0 +1,5 @@
+Description:
+  Generates config/adcopy_config.yml where your AdCopy API keys should be stored
+
+Usage:
+  script/generate adcopy_config

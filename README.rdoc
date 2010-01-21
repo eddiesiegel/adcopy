@@ -6,7 +6,15 @@ Documentation::	http://rdoc.info/projects/atomon/adcopy
 
 == Installation
 
-Currently AdCopy can only be installed as a rails plugin (gem coming soon):
+AdCopy can be installed as a gem by adding the following line to your <tt>environment.rb</tt> file:
+
+  config.gem "adcopy"
+
+And then running the following to install the gem:
+
+  sudo rake gems:install
+
+Alternatively you can install AdCopy as a plugin
 
   script/plugin install git://github.com/atomon/adcopy.git
 

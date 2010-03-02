@@ -13,7 +13,8 @@ module AdCopy
       AdCopy::check_for_keys!
       options = { :tabindex => nil,
                   :theme    => 'purple',
-                  :lang     => 'en'
+                  :lang     => 'en',
+                  :config   => AdCopy::CONFIG
                   }.merge(options)
       
       output = ""
@@ -27,11 +28,11 @@ module AdCopy
       output << %{</script>\n}
       
       output << %{<script type="text/javascript"}
-      output << %{   src="#{AdCopy::API_SERVER}/papi/challenge.script?k=#{AdCopy::CONFIG['C_KEY']}">}
+      output << %{   src="#{AdCopy::API_SERVER}/papi/challenge.script?k=#{options[:config][:c_key]}">}
       output << %{</script>}
 
       output << %{<noscript>}
-      output << %{   <iframe src="#{AdCopy::API_SERVER}/papi/challenge.noscript?k=#{AdCopy::CONFIG['C_KEY']}"}
+      output << %{   <iframe src="#{AdCopy::API_SERVER}/papi/challenge.noscript?k=#{options[:config][:c_key]}"}
       output << %{	 height="300" width="500" frameborder="0"></iframe><br/>}
       output << %{   <textarea name="adcopy_challenge" rows="3" cols="40">}
       output << %{   </textarea>}

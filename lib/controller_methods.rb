@@ -16,14 +16,15 @@ module AdCopy
       options = { :validate_response  => true,
                   :timeout            => 5,
                   :model              => nil,
-                  :error_message      => nil
+                  :error_message      => nil,
+                  :config             => AdCopy::CONFIG
                 }.merge(options)
       
       #Send POST to AdCopy
       response = nil
       Timeout::timeout(options[:timeout]) do
         response = Net::HTTP.post_form URI.parse("#{AdCopy::VERIFY_SERVER}/papi/verify"), {
-          "privatekey"  =>  AdCopy::CONFIG['V_KEY'],
+          "privatekey"  =>  options[:config][:v_key],
           "challenge"   =>  params[:adcopy_challenge],
           "response"    =>  params[:adcopy_response],
           "remoteip"    =>  request.remote_ip
@@ -32,7 +33,7 @@ module AdCopy
       answer, error, authenticator = response.body.split("\n")
       
       #validate the response
-      if options[:validate_response] && authenticator != Digest::SHA1.hexdigest("#{answer}#{params[:adcopy_challenge]}#{AdCopy::CONFIG['H_KEY']}")
+      if options[:validate_response] && authenticator != Digest::SHA1.hexdigest("#{answer}#{params[:adcopy_challenge]}#{options[:config][:h_key]}")
         raise AdCopyError, "AdCopy Error: Unable to Validate Response" 
       end
       

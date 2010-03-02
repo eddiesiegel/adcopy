@@ -13,7 +13,7 @@ module AdCopy
   end
   
   def self.check_for_keys!
-    if !File.exist?(CONFIG_FILE) || CONFIG.nil? || CONFIG['C_KEY'].nil? || CONFIG['V_KEY'].nil? || CONFIG['H_KEY'].nil?
+    if !File.exist?(CONFIG_FILE) || CONFIG.nil?
       raise AdCopyError, "AdCopy API keys not found. Keys can be obtained at #{SIGNUP_URL}"
     end
   end
